@@ -8,15 +8,16 @@ the blog covers alot of stuff that is kind of understandable as that is how i pr
 
 so here is the content it will be updated regularly as per my learnings 
 
-TABLE OF CONTENT 
-1. the thought process of compilers 
+##### **TABLE OF CONTENT** 
+
+[1. the thought process of compilers](#The-Thought-Process-Of-Compiler)
 
 ## The Thought Process Of Compilers 
 the compilers are commanded to thought in a liner way unlike the interpreters they are just modern philosophers but the compilers are the ogs they defied computational logic for you in the liner manner 
 
 so the compilers is consist of mostly three major component referring to the blog i follow 
 drawn by me in this excalidraw sheet 
-[[thoughtsofcompiler]] 
+
 
 ### Lexer
 A Lexer is basically the callout guy it is gonna call of the predefined identified keyword of the language and tell the compiler that this is what the source means to do and work like 
