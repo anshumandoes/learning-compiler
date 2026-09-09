@@ -75,11 +75,11 @@ class Lexer:
                 token = Token(lastChar + self.curChar, TokenType.NOTEQ)
             else:
                 self.abort("Expected !=, got !" + self.peek())
-        elif  self.curChar == "\'":
+        elif  self.curChar == "\"":
             self.nextChar()
             startPos = self.curPos
 
-            while self.curChar != "\'":
+            while self.curChar != "\"":
                 if self.curChar in ['\r', '\n', '\t', '\\', '%', '$', '"', '\'']:
                     self.abort("Illegal character in string.")
                 self.nextChar()
@@ -98,6 +98,16 @@ class Lexer:
                     self.nextChar()
             tokText = self.source[startPos : self.curPos + 1]
             token = Token(tokText, TokenType.NUMBER)
+        elif self.curChar.isalpha():
+            startPos = self.curPos
+            while self.peek().isalnum():
+                self.nextChar()
+            tokText = self.source[startPos : self.curPos + 1]
+            keyword = Token.checkIfKeyword(tokText)
+            if keyword == None:
+                token = Token(tokText, TokenType.IDENT)
+            else:
+                token = Token(tokText, keyword)
         else:
             self.abort("Unknown token: " + self.curChar)
 			
@@ -107,6 +117,14 @@ class Lexer:
 class Token:
     def __init__(self, tokenText, tokenKind):
         self.text = tokenText  
+        self.kind = tokenKind
+    
+    @staticmethod
+    def checkIfKeyword(tokenText):
+        for kind in TokenType:
+            if kind.name == tokenText and kind.value >= 100 and kind.value < 200:
+                return kind
+        return None
 
 class TokenType(enum.Enum):
 	EOF = -1

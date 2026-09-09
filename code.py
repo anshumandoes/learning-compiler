@@ -9,7 +9,7 @@ import enum
     #     print (Lexer.curChar)
     #     Lexer.nextChar()
 def main():
-    source = "123"
+    source = "IF+-123 foo*THEN/"
     lexer = Lexer(source)
 
     token = lexer.getToken()
@@ -17,5 +17,4 @@ def main():
         print(token.kind)
         token = lexer.getToken()
         
-
-main() 
+main()
