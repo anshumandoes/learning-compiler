@@ -1,20 +1,21 @@
 from lex import *
+from parse import * 
+import sys 
 import enum
 
-# def main():
-    # source = "MAKABHOSDA AAAG"
-    # Lexer = lexer(source)
+def main ():
+    print("mupiler")
 
-    # while Lexer.peek() != '\0':
-    #     print (Lexer.curChar)
-    #     Lexer.nextChar()
-def main():
-    source = "IF+-123 foo*THEN/"
+    if len(sys.argv) < 2:
+        sys.exit("error: compiler needs source file as arguments ")
+    with open(sys.argv[1], 'r') as inputFile:
+        source = inputFile.read()
+    
     lexer = Lexer(source)
+    parser = Parser(lexer)
 
-    token = lexer.getToken()
-    while token.kind != TokenType.EOF:
-        print(token.kind)
-        token = lexer.getToken()
-        
+    parser.program()
+    print("parsing completed")
+
+
 main()

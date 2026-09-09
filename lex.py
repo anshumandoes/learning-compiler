@@ -121,8 +121,9 @@ class Token:
     
     @staticmethod
     def checkIfKeyword(tokenText):
+        upperText = tokenText.upper()
         for kind in TokenType:
-            if kind.name == tokenText and kind.value >= 100 and kind.value < 200:
+            if kind.name == upperText and kind.value >= 100 and kind.value < 200:
                 return kind
         return None
 
